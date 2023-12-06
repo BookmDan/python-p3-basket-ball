@@ -182,3 +182,58 @@ def game_dict():
             ]
         }
     }
+
+def get_teams():
+    # teams = []
+    # how to get the teams
+
+    # return list of two dictionary of teams by team-name
+    # list(str(team["team_name"]))
+
+    # pull value for team 
+    # for team in game_dict():
+    #     teams.append(game_dict()[team])
+    dictionary = game_dict()
+    # breakpoint()
+    return [dictionary[team] for team in dictionary]
+
+# print (get_teams())
+
+def get_all_players():
+    # return all players 
+    # all_players = []
+    # teams = get_teams()
+    # for team in teams:
+    #     # for player in team["players"]:
+    #         # all_players.append(player)
+
+    #         all_players.extend(team["players"])
+    # print(len(all_players))
+
+    return [player for team in get_teams() for player in team["players"] ]
+
+print(len(get_all_players()))
+# get_all_players()
+
+def num_points_per_game(name):
+    # return number of points per game for that player
+    # list
+
+    # for player in get_all_players():
+    #     if player["name"] == name:
+    #         return player["points_per_game"]
+    # raise Exception ("There is no player by that name.")
+    # if -1: 
+    #     raise Exception("There is no player by that name.")
+    
+    result = next((player["points_per_game"] for player in get_all_players() if player["name"] == name) , -1)
+   
+    # return result if result >= 0 else ("There is no player by that name.")
+    if result >= 0:
+        return result 
+    else:
+        raise Exception("There is no player by that name.")
+
+
+# print(num_points_per_game("bob"))
+# print(num_points_per_game("Rui Hachimura"))
