@@ -210,7 +210,7 @@ def get_all_players():
     #         all_players.extend(team["players"])
     # print(len(all_players))
 
-    return [player for team in get_teams() for player in team["players"] ]
+    return [player for team in get_teams() for player in team["players"]]
 
 print(len(get_all_players()))
 # get_all_players()
